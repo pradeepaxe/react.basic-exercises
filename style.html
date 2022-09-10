@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>first reaction</title>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script> 
+   <style>
+    
+   </style>
+    </head>
+    <body>
+        <div id ="root"/>
+      <script type="text/babel">
+        class Hello extends React.Component{
+             render(){
+
+                //console.log(this.props.children)  
+                var textStyle={
+                    backgroundColor: this.props.bgColor,
+                     color: "red",
+                     fontSize:20,
+                     textAlign:"center",
+                     padding:10,
+                     margin:10
+                }
+                 return  <div style={textStyle}>{this.props.children}</div>
+             }
+         }
+
+    
+        ReactDOM.render(<div><Hello bgColor="yellow">USA</Hello><Hello bgColor="Green">CANADA</Hello><Hello bgColor="pink">SRILANKA</Hello><Hello >MEXICO</Hello></div>,document.getElementById("root"));
+    </script>
+</body>
+</html> 

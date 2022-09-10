@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>first reaction</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+
+
+</div>
+<div id ="root"/>
+    <script type="text/babel">
+
+          class ListCourses extends React.Component {
+
+
+
+
+              constructor(props) {
+                  super(props);
+
+                  this.state = {courses: ['angular', 'react', 'nodejs', 'html']}
+
+                  this.handleUpdate = this.handleUpdate.bind(this)
+
+              }
+
+              handleUpdate(){
+
+              alert("test123")
+              this.setState={
+                courses:['angular 10','spring bot 10','react 10']
+              }
+              }
+
+
+
+              render(){
+                  return <div>
+                      <h1> {this.props.title}</h1>
+                                <ul>
+
+
+                                    {this.state.courses.map(course => <li> {course}</li>)}
+
+
+                              </ul>
+
+                          <input type="button" value="submit"/></div>
+              }
+
+
+
+          }
+
+          ReactDOM.render(<div><ListCourses title="List of courses" onClick="{this.handleUpdate}"/></div>,document.getElementById("root"));
+
+</script>
+
+</body>
+</html>

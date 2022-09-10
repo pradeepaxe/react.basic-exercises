@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>first reaction</title>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script> 
+    </head>
+    <body>
+        <div id ="root"/>
+      <script type="text/babel">
+
+        class Login extends React.Component{
+
+           handleClick(event){
+            alert("you clicked" + event.type)
+              this.setState={
+                courses:['angular 10','react 10' , 'spring booot']
+              }
+           }
+
+
+           render(){
+                
+               
+
+                return <div><h1>{this.props.title}</h1>
+                    <label>Username:</label>
+                    <input type="text"/><br/>
+                    <label>Password:</label>
+                    <input type="password"/><br/>
+                    <input type="button"  value="submit" onClick={this.handleClick.bind(this)}/>
+                        
+
+
+                    </div>
+
+            }
+        }
+
+        
+
+        ReactDOM.render(<div><Login title="please login"/></div>,document.getElementById("root"));
+    </script>
+</body>
+</html> 

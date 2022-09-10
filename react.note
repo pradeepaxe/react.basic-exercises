@@ -1,0 +1,110 @@
+Sandra1986@Astate2!@
+
+
+
+
+version 6 update
+-----------------
+(a)
+
+Use <Route path="*" element={<ErrorComponent />} />
+
+    <Route path="*" element={<ErrorComponent />} />
+    //<Route component={ErrorComponent}/>
+
+
+
+
+
+ Change 1: New File - withParams.jsx
+To enable passing parameters to a component we need to use withParams. We create a separate functional component so that we can decorate any component that needs parameters!
+
+import { useParams } from "react-router-dom";
+ 
+function withParams(Component) {
+  return props => <Component {...props} params={useParams()} />;
+}
+ 
+export default withParams
+
+
+(b)
+
+Change 2: Update TodoApp.jsx, render() method to use withParams
+        const WelcomeComponentWithParams = withParams(WelcomeComponent);
+        
+        <Route path="/welcome/:name" element={<WelcomeComponentWithParams />} />
+ 
+        //element={<WelcomeComponent />}
+Change 3: Use this.props.params.name in WelcomeComponent render() method
+<div>Welcome {this.props.params.name}</div>
+//<div>Welcome {this.props.match.params.name}</div>
+
+
+
+import { useParams } from "react-router-dom";
+ 
+function withParams(Component) {
+  return props => <Component {...props} params={useParams()} />;
+}
+ 
+export default withParams
+
+        const WelcomeComponentWithParams = withParams(WelcomeComponent);
+        
+        <Route path="/welcome/:name" element={<WelcomeComponentWithParams />} />
+ 
+        //element={<WelcomeComponent />}
+
+
+
+<div>Welcome {this.props.params.name}</div>
+
+
+----------------------------
+
+
+
+import React from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import AuthenticationService from "./AuthenticationService";
+ 
+const AuthenticatedRoute = () => {
+ 
+    // If authorized, return an outlet that will render child elements
+    // If not, return element that will navigate to login page
+    return AuthenticationService.isUserLoggedIn() ? <Outlet /> : <Navigate to="/login" />;
+}
+ 
+export default AuthenticatedRoute;
+
+
+
+class TodoApp extends Component{
+    render() {
+        return (
+            <div className={"TodoApp"}>
+                <Router>
+                    <HeaderComponent/>
+                    <Routes>
+                        <Route path="/" element={<LoginComponentWithNavigate />}/>
+                        <Route path="/login" element={<LoginComponentWithNavigate />}/>
+                        <Route path="/logout" element={<LogoutComponent />}/>
+                        <AuthenticatedRoute path="/welcome/:name" element={<AuthenticatedRoute />}>
+                            <Route path="/welcome/:name" element={<WelcomeComponent />}/>
+                        </AuthenticatedRoute>
+                        <Route path="/todo" element={<ListTodoComponent />}/>
+                        <Route path="*" element={ <ErrorComponent /> } />
+                    </Routes>
+                    <FooterComponent/>
+                </Router>
+                {/*<LoginComponent/>*/}
+                {/*<WelcomeComponent/>*/}
+            </div>
+        )
+    }
+}'
+
+-------------------------
+
+'

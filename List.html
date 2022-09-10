@@ -1,0 +1,70 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>first reaction</title>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script> 
+    </head>
+    <body>
+        <div id ="root"/>
+      <script type="text/babel">
+
+        class List extends React.Component{
+           render(){
+                
+               
+
+                return <div><h1>{this.props.title}</h1>
+                        <ul>
+                            <li> ReactJS</li>
+                            <li>ExpressJS</li>
+                            <li>NodeJS</li>
+                            <li>AngularJS</li>
+                            
+                        </ul>
+                        
+
+
+                    </div>
+
+            }
+        }
+
+        class List2 extends React.Component{
+            render(){
+                var courses=['ReactJS2','ExpressJS2','NodeJS2','AngularJS2'];
+                var liElements=[];
+
+                for(var course of courses){
+                    liElements.push(<li>{course}</li>);
+                }
+
+                return <div>
+                        <h1>{this.props.title}</h1>
+                            <ul>
+                                {liElements}
+                            </ul>
+                        </div>
+            }
+        }
+
+        class List3 extends React.Component{
+            render(){
+                var courses= ['angular-map','react-map','node-map'];
+
+                return <div>
+                        {this.props.title}
+                        <ul>
+                            {courses.map(course=><li>{course}</li>)}
+                            </ul>
+
+                    </div>
+            }
+        }
+        
+
+        ReactDOM.render(<div><List3 title="List of courses"/></div>,document.getElementById("root"));
+    </script>
+</body>
+</html> 

@@ -1,0 +1,137 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>first reaction</title>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script> 
+    </head>
+    <body>
+        <div id ="root"/>
+      <script type="text/babel">
+
+        // class Students extends React.Component{
+        //    render(){
+                
+               
+
+        //         return <div><h1>{this.props.title}</h1>
+        //                 <table>
+        //                     <thead>
+        //                         <tr>
+        //                             <td>Name</td>
+        //                             <td>Age</td>
+        //                             <td>cit</td>
+        //                         </tr>
+        //                     </thead>
+
+        //                     <tbody>
+        //                         <tr>
+        //                             <td>Doug</td>
+        //                             <td>20</td>
+        //                             <td>king of prussia</td>
+        //                         </tr>
+
+        //                         <tr>
+        //                             <td>ahmed</td>
+        //                             <td>30</td>
+        //                             <td>king of prussia</td>
+        //                         </tr>
+        //                     </tbody>
+        //                 </table>
+                        
+
+
+        //             </div>
+
+        //     }
+        // }
+
+
+        var STUDENTS=
+                
+                [
+                {Name:"Sasanka",Age: "12",City: "PA"},
+                {Name:"Daniel",Age: "30", City: "AZ"},
+                {Name:"Janka",Age: "39", City: "PA"},
+                {Name:"Ravindu",Age: "44", City: "TX"},
+
+                ];
+
+        class Students2 extends React.Component{
+
+            constructor(props){
+                super(props)
+                this.state = {
+                    stds: STUDENTS,
+                    stdsClone:STUDENTS
+                }
+            }            
+            
+            handleOnChange(event){
+                    console.log(event.target.value)
+
+                    var filteredStds = event.target.value;
+
+                    var newFilteredStd=[]
+
+                    for(var std of this.state.stds){
+                        if(std.Name.toLowerCase().indexOf(filteredStds.toLowerCase())>=0 || 
+                        std.City.toLowerCase().indexOf(filteredStds.toLowerCase())>=0){
+                            newFilteredStd.push(std);
+                        }
+                    }
+                    console.log(newFilteredStd)
+                     this.setState({stdsClone: newFilteredStd})
+                     }
+            
+            
+            render(){
+                return <div><h1>{this.props.title}</h1>
+                    <br/>
+                    <input type="text" placeholder="enter name/city/age" onChange={this.handleOnChange.bind(this)}/>
+                        <table>
+                            <thead>
+                                <tr><td>Name</td>
+                                <td>Age</td>
+                                <td>city</td>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                
+                                    {               this.state.stdsClone.map(
+                                                    std=><RowCreator item={std}/>
+                                                    )
+
+                                    }
+
+                                    
+                                    
+                            </tbody>
+
+                        </table>
+
+                    </div>
+            }
+        }
+
+        class RowCreator extends React.Component{
+            render(){
+
+                var std = this.props.item;
+                
+               return <tr>
+                     <td>{std.Name}</td>
+                      <td>{std.Age}</td>
+                       <td>{std.City}</td>
+                </tr>
+
+            }
+        }
+        
+
+        ReactDOM.render(<div><Students2 title="List of students"/></div>,document.getElementById("root"));
+    </script>
+</body>
+</html> 
